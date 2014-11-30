@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>github atom编辑器 | 程序员复古版</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Github给程序员的新编辑器
+其实我很2年前就听说过Atom编辑器，也确实网上看过一些介绍，但是当第一眼看到它的样子的时候我惊呆了，这个不是Sublime Text嘛？Github这是闹哪样啊，重复造轮子啊，随即Atom就被我自动过滤了。时隔2年以后，终于鼓起勇气弄下来玩了一把，总的来说感觉还凑合。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github atom编辑器">
+<meta property="og:url" content="http://yoursite.com/2014/11/30/github-atom/">
+<meta property="og:site_name" content="程序员复古版">
+<meta property="og:description" content="Github给程序员的新编辑器
+其实我很2年前就听说过Atom编辑器，也确实网上看过一些介绍，但是当第一眼看到它的样子的时候我惊呆了，这个不是Sublime Text嘛？Github这是闹哪样啊，重复造轮子啊，随即Atom就被我自动过滤了。时隔2年以后，终于鼓起勇气弄下来玩了一把，总的来说感觉还凑合。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="github atom编辑器">
+<meta name="twitter:description" content="Github给程序员的新编辑器
+其实我很2年前就听说过Atom编辑器，也确实网上看过一些介绍，但是当第一眼看到它的样子的时候我惊呆了，这个不是Sublime Text嘛？Github这是闹哪样啊，重复造轮子啊，随即Atom就被我自动过滤了。时隔2年以后，终于鼓起勇气弄下来玩了一把，总的来说感觉还凑合。">
+
+  
+    <link rel="alternative" href="/atom.xml" title="程序员复古版" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="https://avatars3.githubusercontent.com/u/1249471?v=3&amp;s=460">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Handle Huang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">在VIM上飞舞的双手</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/UI/" style="font-size: NaNpx;">UI</a><a href="/tags/web编程/" style="font-size: NaNpx;">web编程</a><a href="/tags/编辑器/" style="font-size: NaNpx;">编辑器</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="https://avatars3.githubusercontent.com/u/1249471?v=3&amp;s=460">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">Handle Huang</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">在VIM上飞舞的双手</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="facebook" target="_blank" href="/#" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-github-atom" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/30/github-atom/" class="article-date">
+  	<time datetime="2014-11-30T10:46:16.000Z" itemprop="datePublished">Nov 30 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂七杂八/">杂七杂八</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      github atom编辑器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Github给程序员的新编辑器">Github给程序员的新编辑器</h2>
+<p>其实我很2年前就听说过Atom编辑器，也确实网上看过一些介绍，但是当第一眼看到它的样子的时候我惊呆了，这个不是Sublime Text嘛？Github这是闹哪样啊，重复造轮子啊，随即Atom就被我自动过滤了。时隔2年以后，终于鼓起勇气弄下来玩了一把，总的来说感觉还凑合。</p>
+<a id="more"></a>
+
+<h2 id="使用感受">使用感受</h2>
+<ol>
+<li>如果你是一个Sublime Text的用户那么从Sublime Text转移到Atom几乎没有任何困难，你一样可以用<strong>Ctrl+Shift+P</strong>,<strong>Ctrl+P</strong>。</li>
+<li>Atom不用像Sublime Text那样需要另外安装包管理器，直接就内置了，这个感觉还是比较好的。<br>![设置]（<a href="https://raw.githubusercontent.com/hxshandle/image-pool/master/blog/1.png）" target="_blank" rel="external">https://raw.githubusercontent.com/hxshandle/image-pool/master/blog/1.png）</a></li>
+<li>文字菜单栏这回终于可以完全隐藏了，这对于用惯了VIM的我来说那个菜单条真的很影响心情。</li>
+<li><strong>Ctrl+\</strong>可以显示和隐藏左侧的菜单栏<br>![设置]（<a href="https://raw.githubusercontent.com/hxshandle/image-pool/master/blog/2.png）" target="_blank" rel="external">https://raw.githubusercontent.com/hxshandle/image-pool/master/blog/2.png）</a></li>
+<li>如果你编辑的工程是git目录的话，左侧的文件导航能够很方便的看到哪些文件有变动，哪些文件是在.gitignore里面的，这点我觉得还是很不错的。</li>
+</ol>
+<h2 id="问题">问题</h2>
+<ol>
+<li>安装Emmet插件的时候始终无法成功安装提示nodejs的npm报错，一开始以为只是windows平台上的问题，换上mac发现问题依旧，网上的方法也都试了一遍，无解，Atom beta果然还是不够稳定啊。</li>
+<li>Soft wrap这个功能很奇怪，每次自动换行的位置都不相同，完全找不到规律，编辑文本的时候感觉会很乱。</li>
+<li>鼠标选区的时候总感觉有延迟，这个可能是浏览器实现的问题，毕竟这个Atom是基于web技术的浏览器，其实你可以认为它就是一个独立的web application。</li>
+</ol>
+<p>以上这些暂时就是Atom使用一天的使用感受</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/11/26/For-New-UI-Programer-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Web编程之旅（一）</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 Handle Huang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  </div>
+</body>
+</html>
