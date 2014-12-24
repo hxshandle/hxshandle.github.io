@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 20.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 20.00px;">编辑器</a>
+						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 20.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 20.00px;">编辑器</a>
 					</div>
 				</section>
 				
@@ -192,6 +192,62 @@
 	</div>
 </nav>
       
+  
+    <article id="post-use-modemon-to-keep-develop" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/24/use-modemon-to-keep-develop/" class="article-date">
+  	<time datetime="2014-12-24T12:12:20.000Z" itemprop="datePublished">Dec 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Express/">Express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/24/use-modemon-to-keep-develop/">使用nodemon让Express server自动重启</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在使用Express做快速web开发的时候，当程序文件一变动就需要重启server这个对于一个高效的web程序员来说是非常糟糕的体验，今天发现了一个不错的工具<a href="http://nodemon.io/" target="_blank" rel="external">nodemon</a>，当文件变动以后它可以自动重启Express服务器，当然重启Express服务器只是一个很小的功能，它可以做更多的事情，具体的可以访问它的文档。</p>
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g nodemon</div></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>cd to_your_express_project_root_path</div><div class="line"><span class="variable">$ </span>nodemon bin/www</div></pre></td></tr></table></figure>
+
+<p>在默认情况下nodemon只会监控当前操作目录，当然你也可以通过配置来增加，这里就不多做介绍了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-how-to-allow-mac-run-any-application" class="article article-type-post" itemscope itemprop="blogPost">
   
