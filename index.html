@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/grunt/" style="font-size: 16.67px;">grunt</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/web/" style="font-size: 20.00px;">web</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 13.33px;">其他</a><a href="/tags/编辑器/" style="font-size: 13.33px;">编辑器</a>
+						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/grunt/" style="font-size: 10.00px;">grunt</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/web/" style="font-size: 20.00px;">web</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 20.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 20.00px;">编辑器</a>
 					</div>
 				</section>
 				
@@ -200,75 +200,10 @@
   	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
 </a>
       
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
-
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
   </div>
-  
-</article>
 
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
 
@@ -292,490 +227,7 @@
         <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
 <h2 id="关于Grunt">关于Grunt</h2>
 <p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
 
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
-
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
-
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
-
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
-
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
-
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<h2 id="准备">准备</h2>
-<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
-<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
-
-<h3 id="创建工程">创建工程</h3>
-<p>所谓的工程其实就是一个目录，随意在你的系统中创建一个空目录，文章一下所有的操作都会在这个目录下面。这里我先建立自己的基于weixin js sdk的项目模板,一个好的习惯是目录名称应该能够体现你工程的目的和属性。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> grunt-init-weixin-jssdk</div><div class="line">$ <span class="keyword">cd</span> grunt-init-weixin-jssdk</div></pre></td></tr></table></figure>
-
-<p>按照grunt-init Customer template的说明创建如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ touch <span class="keyword">template</span>.js</div><div class="line">$ touch rename.json</div><div class="line">$ mkdir root</div></pre></td></tr></table></figure>
-
-<p>其中root目录下的所有文件和子目录都会被复制到所创建的项目中。所有被复制的文件都将会当成模板来处理，在文件中被<strong><strong>{% %}</strong></strong>包围的内容都将会被执行中的变量（rename.json）所替换,除非你设置了noProcess选项。</p>
-<h3 id="rename-json示例">rename.json示例</h3>
-<p>在json中”src/name.js”必须存在于root目录下。在项目创建的过程中改文件名会被自动按照你所给出的模式改名。</p>
-<figure class="highlight JSON"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">src/name.js</span>": <span class="value"><span class="string">"src/jquery.\{%= name %\}.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name_test.js</span>": <span class="value"><span class="string">"test/\{%= name %\}_test.js"</span></span>,</div><div class="line">  "<span class="attribute">test/name.html</span>": <span class="value"><span class="string">"test/\{%= name %\}.html"</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="template-js示例">template.js示例</h3>
-<p>这里是我们主要编写的内容，我们需要在这里设置一系列的问题来完善项目所需要的内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * grunt-init-jquery</div><div class="line"> * https://gruntjs.com/</div><div class="line"> *</div><div class="line"> * Copyright (c) 2013 "Cowboy" Ben Alman, contributors</div><div class="line"> * Licensed under the MIT license.</div><div class="line"> */</div><div class="line"><span class="pi"></span></div><div class="line">'use strict';</div><div class="line"></div><div class="line"><span class="comment">// Basic template description.</span></div><div class="line">exports.description = <span class="string">'Create a jQuery plugin, including QUnit unit tests.'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed before question prompts.</span></div><div class="line">exports.notes = <span class="string">'_Project name_ should not contain "jquery" or "js" and '</span> +</div><div class="line">  <span class="string">'should be a unique ID not already in use at plugins.jquery.com. _Project '</span> +</div><div class="line">  <span class="string">'title_ should be a human-readable title, and doesn\'t need to contain '</span> +</div><div class="line">  <span class="string">'the word "jQuery", although it may. For example, a plugin titled "Awesome '</span> +</div><div class="line">  <span class="string">'Plugin" might have the name "awesome-plugin".'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'For more information, please see the following documentation:'</span> +</div><div class="line">  <span class="string">'\n\n'</span>+</div><div class="line">  <span class="string">'Naming Your Plugin      http://plugins.jquery.com/docs/names/\n'</span> +</div><div class="line">  <span class="string">'Publishing Your Plugin  http://plugins.jquery.com/docs/publish/\n'</span> +</div><div class="line">  <span class="string">'Package Manifest        http://plugins.jquery.com/docs/package-manifest/'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Template-specific notes to be displayed after question prompts.</span></div><div class="line">exports.after = <span class="string">'You should now install project dependencies with _npm '</span> +</div><div class="line">  <span class="string">'install_. After that, you may execute project tasks with _grunt_. For '</span> +</div><div class="line">  <span class="string">'more information about installing and configuring Grunt, please see '</span> +</div><div class="line">  <span class="string">'the Getting Started guide:'</span> +</div><div class="line">  <span class="string">'\n\n'</span> +</div><div class="line">  <span class="string">'http://gruntjs.com/getting-started'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Any existing file or directory matching this wildcard will cause a warning.</span></div><div class="line">exports.warnOn = <span class="string">'*'</span>;</div><div class="line"></div><div class="line"><span class="comment">// The actual init template.</span></div><div class="line">exports.template = <span class="function"><span class="keyword">function</span><span class="params">(grunt, init, done)</span> </span>{</div><div class="line"></div><div class="line">  init.process({type: <span class="string">'jquery'</span>}, [</div><div class="line">    <span class="comment">// Prompt for these values.</span></div><div class="line">    init.prompt(<span class="string">'name'</span>),</div><div class="line">    init.prompt(<span class="string">'title'</span>, <span class="function"><span class="keyword">function</span><span class="params">(value, data, done)</span> </span>{</div><div class="line">      <span class="comment">// Fix jQuery capitalization.</span></div><div class="line">      value = value.replace(<span class="regexp">/jquery/gi</span>, <span class="string">'jQuery'</span>);</div><div class="line">      done(<span class="literal">null</span>, value);</div><div class="line">    }),</div><div class="line">    init.prompt(<span class="string">'description'</span>, <span class="string">'The best jQuery plugin ever.'</span>),</div><div class="line">    init.prompt(<span class="string">'version'</span>),</div><div class="line">    init.prompt(<span class="string">'repository'</span>),</div><div class="line">    init.prompt(<span class="string">'homepage'</span>),</div><div class="line">    init.prompt(<span class="string">'bugs'</span>),</div><div class="line">    init.prompt(<span class="string">'licenses'</span>, <span class="string">'MIT'</span>),</div><div class="line">    init.prompt(<span class="string">'author_name'</span>),</div><div class="line">    init.prompt(<span class="string">'author_email'</span>),</div><div class="line">    init.prompt(<span class="string">'author_url'</span>),</div><div class="line">    init.prompt(<span class="string">'jquery_version'</span>)</div><div class="line">  ], <span class="function"><span class="keyword">function</span><span class="params">(err, props)</span> </span>{</div><div class="line">    <span class="comment">// A few additional properties.</span></div><div class="line">    props.jqueryjson = props.name + <span class="string">'.jquery.json'</span>;</div><div class="line">    props.dependencies = {jquery: props.jquery_version || <span class="string">'&gt;= 1'</span>};</div><div class="line"></div><div class="line">    props.keywords = [];</div><div class="line"></div><div class="line">    <span class="comment">// Files to copy (and process).</span></div><div class="line">    <span class="keyword">var</span> files = init.filesToCopy(props);</div><div class="line"></div><div class="line">    <span class="comment">// Add properly-named license files.</span></div><div class="line">    init.addLicenseFiles(files, props.licenses);</div><div class="line"></div><div class="line">    <span class="comment">// Actually copy (and process) files.</span></div><div class="line">    init.copyAndProcess(files, props, {noProcess: <span class="string">'libs/**'</span>});</div><div class="line"></div><div class="line">    <span class="comment">// Generate package.json file, used by npm and grunt.</span></div><div class="line">    init.writePackageJSON(<span class="string">'package.json'</span>, {</div><div class="line">      name: <span class="string">'jquery-plugin'</span>,</div><div class="line">      version: <span class="string">'0.0.0-ignored'</span>,</div><div class="line">      npm_test: <span class="string">'grunt qunit'</span>,</div><div class="line">      <span class="comment">// TODO: pull from grunt's package.json</span></div><div class="line">      node_version: <span class="string">'&gt;= 0.8.0'</span>,</div><div class="line">      devDependencies: {</div><div class="line">        <span class="string">'grunt-contrib-jshint'</span>: <span class="string">'~0.10.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-qunit'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-concat'</span>: <span class="string">'~0.3.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-uglify'</span>: <span class="string">'~0.2.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-watch'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">        <span class="string">'grunt-contrib-clean'</span>: <span class="string">'~0.4.0'</span>,</div><div class="line">      },</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// Generate jquery.json file.</span></div><div class="line">    init.writePackageJSON(props.jqueryjson, props, <span class="function"><span class="keyword">function</span><span class="params">(pkg, props)</span> </span>{</div><div class="line">      <span class="comment">// The jQuery site needs the "bugs" value as a string.</span></div><div class="line">      <span class="keyword">if</span> (<span class="string">'bugs'</span> <span class="keyword">in</span> props) { pkg.bugs = props.bugs; }</div><div class="line">      <span class="keyword">return</span> pkg;</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// All done!</span></div><div class="line">    done();</div><div class="line">  });</div><div class="line"></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>具体示例可以参考<a href="https://github.com/hxshandle/grunt-init-weixin-jssdk" target="_blank" rel="external">grunt-init-weixin-jssdk</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
-<h2 id="关于Grunt">关于Grunt</h2>
-<p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
-<p>
         
           <p class="article-more-link">
             <a href="/2015/02/10/create-web-project-though-grunt-init-template/#more">more >></a>
@@ -847,10 +299,335 @@
 
 
   
+    <article id="post-use-modemon-to-keep-develop" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+    <div class="article-meta">
+      <a href="/2014/12/24/use-modemon-to-keep-develop/" class="article-date">
+  	<time datetime="2014-12-24T12:12:20.000Z" itemprop="datePublished">Dec 24 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Express/">Express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/24/use-modemon-to-keep-develop/">使用nodemon让Express server自动重启</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在使用Express做快速web开发的时候，当程序文件一变动就需要重启server这个对于一个高效的web程序员来说是非常糟糕的体验，今天发现了一个不错的工具<a href="http://nodemon.io/" target="_blank" rel="external">nodemon</a>，当文件变动以后它可以自动重启Express服务器，当然重启Express服务器只是一个很小的功能，它可以做更多的事情，具体的可以访问它的文档。</p>
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g nodemon</div></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>cd to_your_express_project_root_path</div><div class="line"><span class="variable">$ </span>nodemon bin/www</div></pre></td></tr></table></figure>
+
+<p>在默认情况下nodemon只会监控当前操作目录，当然你也可以通过配置来增加，这里就不多做介绍了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-how-to-allow-mac-run-any-application" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/18/how-to-allow-mac-run-any-application/" class="article-date">
+  	<time datetime="2014-12-18T03:06:20.000Z" itemprop="datePublished">Dec 18 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂七杂八/">杂七杂八</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/18/how-to-allow-mac-run-any-application/">让mac可以运行任何来源的程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天想在公司的MAC电脑上装一个破解版的Sketch3，你知道的最为一个屌丝600多大洋买一个软件我还是很舍不得的。可是蛋疼的事情发生了，软件下完了发现不能用，原因是安全策略不允许我运行非app store和认证的程序，并且由于公司的安全策略这个选项是灰色的无法修改，我了个去啊，这个怎么可以了。所以经过1/4柱香的google找到的解决办法，So easy，一个命令就解决了<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/12/18/how-to-allow-mac-run-any-application/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-google-drive-image-link" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/11/google-drive-image-link/" class="article-date">
+  	<time datetime="2014-12-11T04:41:46.000Z" itemprop="datePublished">Dec 11 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂七杂八/">杂七杂八</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/11/google-drive-image-link/">使用Google Drive作为Blog的图床</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候会碰到需要在blog或者codepen.io写一些东西的时候需要用到图片，如果使用github来上传图片的话虽然也可以，但是总感觉贬低了github，使用起来也不是很方便，所以想到了使用Google Drive作为图床使用。</p>
+<p>登陆Google Drive上传图片之后点击获取链接，我们会得到一个如下的URL地址</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http<span class="variable">s:</span>//drive.google.<span class="keyword">com</span>/<span class="keyword">open</span>?id=YOUR_FILE_ID&authuser=<span class="number">0</span></div></pre></td></tr></table></figure>
+
+<p>但是这个地址是无法直接作为image的src值的，我们需要稍微做一点修改(你必须设置一下google的共享属性<strong>知道此链接的任何人都可以查看</strong>)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http<span class="variable">s:</span>//drive.google.<span class="keyword">com</span>/uc?export=<span class="keyword">view</span>&id=YOUR_FILE_ID</div></pre></td></tr></table></figure>
+
+<p>如果需要让这个文件直接支持下载的话，请使用如下地址</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http<span class="variable">s:</span>//drive.google.<span class="keyword">com</span>/uc?export=download&id=YOUR_FILE_ID</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-sublime-for-web-dev" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/08/sublime-for-web-dev/" class="article-date">
+  	<time datetime="2014-12-08T12:42:12.000Z" itemprop="datePublished">Dec 8 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/08/sublime-for-web-dev/">Web开发人员的sublime text配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为什么选择Sublime_Text">为什么选择Sublime Text</h2>
+<p>虽然Sublime Text一直都不是我的主开发编辑器（我的主编辑器是VIM），但是这并不妨碍我对它的喜欢，甚至有时候我会突然离开VIM转到ST上开发某些程序，主要原因是ST可以<strong>非常快速的进行配置已满足不同的开发环境需求</strong>，虽然VIM也可以，但是5年下来我的TMUX+VIM开发环境快捷键已经不够用了，修改起来也慢，对于一些实验性质的开发我都懒的去配置了。</p>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/2014/12/08/sublime-for-web-dev/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-github-atom" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/30/github-atom/" class="article-date">
+  	<time datetime="2014-11-30T10:46:16.000Z" itemprop="datePublished">Nov 30 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂七杂八/">杂七杂八</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/30/github-atom/">github atom编辑器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Github给程序员的新编辑器">Github给程序员的新编辑器</h2>
+<p>其实我很2年前就听说过Atom编辑器，也确实网上看过一些介绍，但是当第一眼看到它的样子的时候我惊呆了，这个不是Sublime Text嘛？Github这是闹哪样啊，重复造轮子啊，随即Atom就被我自动过滤了。时隔2年以后，终于鼓起勇气弄下来玩了一把，总的来说感觉还凑合。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2014/11/30/github-atom/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-For-New-UI-Programer-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/26/For-New-UI-Programer-1/" class="article-date">
+  	<time datetime="2014-11-26T03:35:46.000Z" itemprop="datePublished">Nov 26 2014</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web编程之旅/">Web编程之旅</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web编程/">web编程</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/26/For-New-UI-Programer-1/">Web编程之旅（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言">前言</h2>
+<p>昨天晚上快11点的时候收到了一个学妹的邮件，问我关于web编程方面的问题，她说她很迷茫，不知道如何开始学习Web编程，希望我能推荐一些入门的书籍给她。看到这封邮件我也犯难了，因为我确实不知道现在关于JS、CSS和HTML方面的入门书哪些比较好，所以才有了写这样一篇博客的想法，希望能帮助还在大学或者对web编程感兴趣的人一些帮助。</p>
+<h2 id="准备">准备</h2>
+<p>从我个人的经验来说刚刚开始学习编程之前有一个好的知识组织和代码管理是非常有必要的，在学习的过程中我们会经常忘记之前我们已经练习过的那些知识点，如果没有一个好的知识组织管理在学习的过程中我们会步履蹒跚，每次碰到这类问题都会从头开始再学习一遍，这个一次两次还好说时间久了真的会很让人沮丧的。<br>幸运的是我们现在生活在云时代，网络上有各种各样的免费工具空间可供我们选择，如果你完全是一个编程的门外汉的话，那么请按照我下面所说的步骤来建立自己的知识管理吧。<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/11/26/For-New-UI-Programer-1/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
   
 
       <footer id="footer">
