@@ -9,7 +9,7 @@
 虽然Sublime Text一直都不是我的主开发编辑器（我的主编辑器是VIM），但是这并不妨碍我对它的喜欢，甚至有时候我会突然离开VIM转到ST上开发某些程序，主要原因是ST可以非常快速的进行配置已满足不同的开发环境需求，虽然VIM也可以，但是5年下来我的TMUX+VIM开发环境快捷键已经不够用了，修改起来也慢，对于一些实验性质的开发我都懒的去配置了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web开发人员的sublime text配置">
-<meta property="og:url" content="http://yoursite.com/2014/12/08/sublime-for-web-dev/">
+<meta property="og:url" content="http://hxshandle.github.io/2014/12/08/sublime-for-web-dev/">
 <meta property="og:site_name" content="程序员复古版">
 <meta property="og:description" content="为什么选择Sublime Text
 虽然Sublime Text一直都不是我的主开发编辑器（我的主编辑器是VIM），但是这并不妨碍我对它的喜欢，甚至有时候我会突然离开VIM转到ST上开发某些程序，主要原因是ST可以非常快速的进行配置已满足不同的开发环境需求，虽然VIM也可以，但是5年下来我的TMUX+VIM开发环境快捷键已经不够用了，修改起来也慢，对于一些实验性质的开发我都懒的去配置了。">
@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 20.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 20.00px;">编辑器</a>
+						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/grunt/" style="font-size: 16.67px;">grunt</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/web/" style="font-size: 20.00px;">web</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 13.33px;">其他</a><a href="/tags/编辑器/" style="font-size: 13.33px;">编辑器</a>
 					</div>
 				</section>
 				
@@ -228,6 +228,8 @@
 <p>Sublime Text拥有非常丰富的插件库，而这些库都可以直接通过Sublime Text的Package Control进行安装，这在编辑器领域可以说是一个非常大的优势，这些库基本上可以满足现在所有的软件开发需求。</p>
 <h3 id="快速">快速</h3>
 <p>说实话Sublime Text是我使用过的第二快速的编辑器（第一名当然是VIM），实在无法想象一个编辑器在集成了如此多的插件后还能如此快速。</p>
+<h3 id="中文输入法无法跟随">中文输入法无法跟随</h3>
+<p>可以通过安装IMESupport这个插件来解决输入法跟随的问题。</p>
 <h3 id="高度可定制化">高度可定制化</h3>
 <p>Sublime Text另外一个非常吸引人的地方是的它的配置，它抛弃了GUI化的配置改用基于JSON的配置方式，有点不言自明，快速啊。这点有点想VIM配置，都是一个基于文本的配置文件，喜欢折腾的人可以玩的很high。</p>
 <h2 id="基于Web开发的Sublime_Text配置">基于Web开发的Sublime Text配置</h2>
@@ -240,6 +242,9 @@
 <li>JSLint</li>
 <li>AlignTab</li>
 <li>j​Query</li>
+<li>compare side-by-side</li>
+<li>docBlockr</li>
+<li>Plain​Tasks</li>
 </ol>
 <h3 id="用户配置文件">用户配置文件</h3>
 <p>不要使用tab来缩进应该使用空格。</p>
@@ -297,7 +302,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="sublime-for-web-dev" data-title="Web开发人员的sublime text配置" data-url="http://yoursite.com/2014/12/08/sublime-for-web-dev/"></div>
+	<div class="ds-thread" data-thread-key="sublime-for-web-dev" data-title="Web开发人员的sublime text配置" data-url="http://hxshandle.github.io/2014/12/08/sublime-for-web-dev/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -321,7 +326,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2014 Handle Huang
+    		&copy; 2015 Handle Huang
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
