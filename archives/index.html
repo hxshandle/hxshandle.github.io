@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/grunt/" style="font-size: 10.00px;">grunt</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/web/" style="font-size: 20.00px;">web</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 20.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 20.00px;">编辑器</a>
+						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/grunt/" style="font-size: 10.00px;">grunt</a><a href="/tags/gulp/" style="font-size: 10.00px;">gulp</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 15.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 15.00px;">编辑器</a>
 					</div>
 				</section>
 				
@@ -193,17 +193,130 @@
 </nav>
       
   
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-gulp-dync-output" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
+      <a href="/2015/03/31/gulp-dync-output/" class="article-date">
+  	<time datetime="2015-03-31T12:46:03.000Z" itemprop="datePublished">Mar 31 2015</time>
 </a>
       
   <div class="article-category">
     <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
   </div>
 
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/31/gulp-dync-output/">Gulp动态监控目录并且格式化输出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果一个web项目是由许多小的子项目（或者称之为组件）组合起来的，同时每个子项目都有属于自己的js，scss文件，但是当编译的时候（或者开发时）我们需要将子项目的这些资源文件移动到web项目的public目录下面，我们肯定不希望每次都手动copy这些文件，那样实在是太没有效率了。<br>让我们看一下如下目录结构</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">project-root</div><div class="line">+---biz-module</div><div class="line">|   +---<span class="number">404</span></div><div class="line">|   +---auth</div><div class="line">|   +---home</div><div class="line">|   +---login</div><div class="line">|   |   \---<span class="keyword">template</span></div><div class="line">|   |       \---scss</div><div class="line">|   \---user</div><div class="line">+---public</div><div class="line">|   +---css</div><div class="line">|   |   \---login</div><div class="line">|   \---modules</div><div class="line">|       \---<span class="type">Material</span></div><div class="line">|           +---css</div><div class="line">|           +---fonts</div><div class="line">|           \---js</div><div class="line">\---<span class="keyword">template</span></div><div class="line">&lt;!-- more --&gt;</div></pre></td></tr></table></figure>
+
+<p>在这个工程结构中每个组件模块以目录的封装形式放在biz-module目录下面，这些组件里面包含了自己所有的静态资源，但是对于web项目来说我们通常会把所有的静态资源放到public目录下面。如果手工复制这些资源文件明显不可能，通过配置文件，如果项目足够大配置文件会让人发疯的。幸运的是我们有gulp这个强大的构建工具，让我们可以用程序员的方式来自动构建。</p>
+<p>当biz-module目录下面有新添加的组件的时候我们完全不需要为其添加新的配置文件内容，而是通过目录扫描自动将其加载，并且将组件内地静态资源自动移动到项目的public目录中。</p>
+<p>下面的示例当中我们会将所有组件中的scss代码编译到项目的public/css目录下，并且根据不同的组件名称创建子目录。这里只是抛砖引玉，你可以用这个机制来分割你的组件，并且保证各个组件之间的完全结构，让项目做到插件化。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="pi">"use strict"</span>;</div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> jade = <span class="built_in">require</span>(<span class="string">'gulp-jade'</span>);</div><div class="line"><span class="keyword">var</span> sass = <span class="built_in">require</span>(<span class="string">'gulp-ruby-sass'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">'lodash'</span>);</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">watchBizModuleSCSS</span><span class="params">(cfg)</span> </span>{</div><div class="line">  gulp.task(cfg.name + <span class="string">"-compile-scss"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> sass(cfg.path)</div><div class="line">      .on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err)</span> </span>{</div><div class="line">        <span class="built_in">console</span>.error(<span class="string">'Error!'</span>, err.message);</div><div class="line">      })</div><div class="line">      .pipe(gulp.dest(cfg.dist));</div><div class="line">  });</div><div class="line">  gulp.task(cfg.name + <span class="string">'-scss'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    gulp.watch(<span class="string">'biz-module/'</span> + cfg.name + <span class="string">'/**/*.scss'</span>, [cfg.name+<span class="string">'-compile-scss'</span>]);</div><div class="line">  });</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// dync watch for biz-module</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> bizModules = fs.readdirSync(path.join(__dirname, <span class="string">'biz-module'</span>));</div><div class="line"><span class="keyword">var</span> _tasks = [];</div><div class="line">_.each(bizModules, <span class="function"><span class="keyword">function</span><span class="params">(m)</span> </span>{</div><div class="line">  <span class="keyword">var</span> hasSCSS = fs.existsSync(path.join(__dirname, <span class="string">'biz-module'</span>, m, <span class="string">'template'</span>, <span class="string">'scss'</span>));</div><div class="line">  <span class="keyword">if</span> (hasSCSS) {</div><div class="line">    <span class="keyword">var</span> cfg = {</div><div class="line">      name:m,</div><div class="line">      path:<span class="string">'biz-module/'</span>+m+<span class="string">"/template/scss/"</span>,</div><div class="line">      dist:<span class="string">'public/css/'</span>+m</div><div class="line">    }</div><div class="line">    watchBizModuleSCSS(cfg);</div><div class="line">    _tasks.push(m+<span class="string">'-scss'</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"%s----&gt;%j"</span>,m,cfg);</div><div class="line">  }</div><div class="line">});</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>, _tasks);</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-manage-multi-remote-repo-for-git" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/25/manage-multi-remote-repo-for-git/" class="article-date">
+  	<time datetime="2015-02-25T03:16:22.000Z" itemprop="datePublished">Feb 25 2015</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/git/">git</a>
+  </div>
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/25/manage-multi-remote-repo-for-git/">git管理多个远程仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天试用了一下BAE，结果在创建完应用的时候居然自己给我分配了一个新的BAE的git repo地址，我人当时就傻眼了，我已经有github和git@OSC了，难道现在还要再多一个百度的git仓库,整个人当时就不好了。还好伟大的git有各种玩法。</p>
+<p>首先在原有的git项目上添加百度的git地址,注意其中bae是新的remote branch的别名。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote <span class="built_in">add</span> bae http<span class="variable">s:</span>//git.duapp.<span class="keyword">com</span>/appidxxxxxxx</div><div class="line">git remote -<span class="keyword">v</span></div></pre></td></tr></table></figure>
+
+<p>添加完百度的远程仓库以后第一步是要pull他，否则你无法提交仓库代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">git</span> pull bae</div></pre></td></tr></table></figure>
+
+<p>执行到这里如果你是nodejs项目的话package.json一定会冲突，处理完冲突以后按照常规方法执行提交合并</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">add</span> .</div><div class="line">git commit -<span class="keyword">am</span> <span class="string">"your comment"</span></div></pre></td></tr></table></figure>
+
+<p>好了执行到这里我们对本地仓库的改动就全部完成了下面是推送，这里我们需要推送2次</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">push</span> origin master </div><div class="line">git <span class="keyword">push</span> bae master</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-howto-create-project-template-though-grunt-init" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/10/howto-create-project-template-though-grunt-init/" class="article-date">
+  	<time datetime="2015-02-10T02:55:21.000Z" itemprop="datePublished">Feb 10 2015</time>
+</a>
+      
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
 
@@ -216,7 +329,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
+      <a class="article-title" href="/2015/02/10/howto-create-project-template-though-grunt-init/">通过grunt-init模板来创建web项目</a>
     </h1>
   
 
@@ -227,10 +340,15 @@
         <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
 <h2 id="关于Grunt">关于Grunt</h2>
 <p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
+<h2 id="准备">准备</h2>
+<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
+<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
+
 
         
           <p class="article-more-link">
-            <a href="/2015/02/10/create-web-project-though-grunt-init-template/#more">more >></a>
+            <a href="/2015/02/10/howto-create-project-template-though-grunt-init/#more">more >></a>
           </p>
         
       

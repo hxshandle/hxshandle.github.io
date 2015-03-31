@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>使用Google Drive作为Blog的图床 | 程序员复古版</title>
+  <title>git管理多个远程仓库 | 程序员复古版</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有时候会碰到需要在blog或者codepen.io写一些东西的时候需要用到图片，如果使用github来上传图片的话虽然也可以，但是总感觉贬低了github，使用起来也不是很方便，所以想到了使用Google Drive作为图床使用。
-登陆Google Drive上传图片之后点击获取链接，我们会得到一个如下的URL地址
-1https://drive.google.com/open?id=YOUR_FI">
+  <meta name="description" content="今天试用了一下BAE，结果在创建完应用的时候居然自己给我分配了一个新的BAE的git repo地址，我人当时就傻眼了，我已经有github和git@OSC了，难道现在还要再多一个百度的git仓库,整个人当时就不好了。还好伟大的git有各种玩法。
+首先在原有的git项目上添加百度的git地址,注意其中bae是新的remote branch的别名。
+12git remote add bae https">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Google Drive作为Blog的图床">
-<meta property="og:url" content="http://hxshandle.github.io/2014/12/11/google-drive-image-link/">
+<meta property="og:title" content="git管理多个远程仓库">
+<meta property="og:url" content="http://hxshandle.github.io/2015/02/25/manage-multi-remote-repo-for-git/">
 <meta property="og:site_name" content="程序员复古版">
-<meta property="og:description" content="有时候会碰到需要在blog或者codepen.io写一些东西的时候需要用到图片，如果使用github来上传图片的话虽然也可以，但是总感觉贬低了github，使用起来也不是很方便，所以想到了使用Google Drive作为图床使用。
-登陆Google Drive上传图片之后点击获取链接，我们会得到一个如下的URL地址
-1https://drive.google.com/open?id=YOUR_FI">
+<meta property="og:description" content="今天试用了一下BAE，结果在创建完应用的时候居然自己给我分配了一个新的BAE的git repo地址，我人当时就傻眼了，我已经有github和git@OSC了，难道现在还要再多一个百度的git仓库,整个人当时就不好了。还好伟大的git有各种玩法。
+首先在原有的git项目上添加百度的git地址,注意其中bae是新的remote branch的别名。
+12git remote add bae https">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Google Drive作为Blog的图床">
-<meta name="twitter:description" content="有时候会碰到需要在blog或者codepen.io写一些东西的时候需要用到图片，如果使用github来上传图片的话虽然也可以，但是总感觉贬低了github，使用起来也不是很方便，所以想到了使用Google Drive作为图床使用。
-登陆Google Drive上传图片之后点击获取链接，我们会得到一个如下的URL地址
-1https://drive.google.com/open?id=YOUR_FI">
+<meta name="twitter:title" content="git管理多个远程仓库">
+<meta name="twitter:description" content="今天试用了一下BAE，结果在创建完应用的时候居然自己给我分配了一个新的BAE的git repo地址，我人当时就傻眼了，我已经有github和git@OSC了，难道现在还要再多一个百度的git仓库,整个人当时就不好了。还好伟大的git有各种玩法。
+首先在原有的git项目上添加百度的git地址,注意其中bae是新的remote branch的别名。
+12git remote add bae https">
 
   
     <link rel="alternative" href="/atom.xml" title="程序员复古版" type="application/atom+xml">
@@ -197,19 +197,19 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-google-drive-image-link" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-manage-multi-remote-repo-for-git" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/11/google-drive-image-link/" class="article-date">
-  	<time datetime="2014-12-11T04:41:46.000Z" itemprop="datePublished">Dec 11 2014</time>
+      <a href="/2015/02/25/manage-multi-remote-repo-for-git/" class="article-date">
+  	<time datetime="2015-02-25T03:16:22.000Z" itemprop="datePublished">Feb 25 2015</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/杂七杂八/">杂七杂八</a>
+    <a class="article-category-link" href="/categories/git/">git</a>
   </div>
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 
     </div>
   
@@ -220,7 +220,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用Google Drive作为Blog的图床
+      git管理多个远程仓库
     </h1>
   
 
@@ -228,15 +228,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有时候会碰到需要在blog或者codepen.io写一些东西的时候需要用到图片，如果使用github来上传图片的话虽然也可以，但是总感觉贬低了github，使用起来也不是很方便，所以想到了使用Google Drive作为图床使用。</p>
-<p>登陆Google Drive上传图片之后点击获取链接，我们会得到一个如下的URL地址</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http<span class="variable">s:</span>//drive.google.<span class="keyword">com</span>/<span class="keyword">open</span>?id=YOUR_FILE_ID&authuser=<span class="number">0</span></div></pre></td></tr></table></figure>
+        <p>今天试用了一下BAE，结果在创建完应用的时候居然自己给我分配了一个新的BAE的git repo地址，我人当时就傻眼了，我已经有github和git@OSC了，难道现在还要再多一个百度的git仓库,整个人当时就不好了。还好伟大的git有各种玩法。</p>
+<p>首先在原有的git项目上添加百度的git地址,注意其中bae是新的remote branch的别名。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote <span class="built_in">add</span> bae http<span class="variable">s:</span>//git.duapp.<span class="keyword">com</span>/appidxxxxxxx</div><div class="line">git remote -<span class="keyword">v</span></div></pre></td></tr></table></figure>
 
-<p>但是这个地址是无法直接作为image的src值的，我们需要稍微做一点修改(你必须设置一下google的共享属性<strong>知道此链接的任何人都可以查看</strong>)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http<span class="variable">s:</span>//drive.google.<span class="keyword">com</span>/uc?export=<span class="keyword">view</span>&id=YOUR_FILE_ID</div></pre></td></tr></table></figure>
+<p>添加完百度的远程仓库以后第一步是要pull他，否则你无法提交仓库代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">git</span> pull bae</div></pre></td></tr></table></figure>
 
-<p>如果需要让这个文件直接支持下载的话，请使用如下地址</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http<span class="variable">s:</span>//drive.google.<span class="keyword">com</span>/uc?export=download&id=YOUR_FILE_ID</div></pre></td></tr></table></figure>
+<p>执行到这里如果你是nodejs项目的话package.json一定会冲突，处理完冲突以后按照常规方法执行提交合并</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">add</span> .</div><div class="line">git commit -<span class="keyword">am</span> <span class="string">"your comment"</span></div></pre></td></tr></table></figure>
+
+<p>好了执行到这里我们对本地仓库的改动就全部完成了下面是推送，这里我们需要推送2次</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">push</span> origin master </div><div class="line">git <span class="keyword">push</span> bae master</div></pre></td></tr></table></figure>
 
 
       
@@ -250,18 +253,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/12/18/how-to-allow-mac-run-any-application/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/03/31/gulp-dync-output/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          让mac可以运行任何来源的程序
+          Gulp动态监控目录并且格式化输出
         
       </div>
     </a>
   
   
-    <a href="/2014/12/08/sublime-for-web-dev/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Web开发人员的sublime text配置</div>
+    <a href="/2015/02/10/howto-create-project-template-though-grunt-init/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">通过grunt-init模板来创建web项目</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -290,7 +293,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="google-drive-image-link" data-title="使用Google Drive作为Blog的图床" data-url="http://hxshandle.github.io/2014/12/11/google-drive-image-link/"></div>
+	<div class="ds-thread" data-thread-key="manage-multi-remote-repo-for-git" data-title="git管理多个远程仓库" data-url="http://hxshandle.github.io/2015/02/25/manage-multi-remote-repo-for-git/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

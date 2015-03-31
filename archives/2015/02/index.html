@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/grunt/" style="font-size: 10.00px;">grunt</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/web/" style="font-size: 20.00px;">web</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 20.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 20.00px;">编辑器</a>
+						<a href="/tags/Express/" style="font-size: 10.00px;">Express</a><a href="/tags/UI/" style="font-size: 10.00px;">UI</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/grunt/" style="font-size: 10.00px;">grunt</a><a href="/tags/gulp/" style="font-size: 10.00px;">gulp</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/web/" style="font-size: 15.00px;">web</a><a href="/tags/web编程/" style="font-size: 10.00px;">web编程</a><a href="/tags/其他/" style="font-size: 15.00px;">其他</a><a href="/tags/编辑器/" style="font-size: 15.00px;">编辑器</a>
 					</div>
 				</section>
 				
@@ -193,17 +193,74 @@
 </nav>
       
   
-    <article id="post-create-web-project-though-grunt-init-template" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-manage-multi-remote-repo-for-git" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/02/10/create-web-project-though-grunt-init-template/" class="article-date">
-  	<time datetime="2015-02-10T13:05:43.000Z" itemprop="datePublished">Feb 10 2015</time>
+      <a href="/2015/02/25/manage-multi-remote-repo-for-git/" class="article-date">
+  	<time datetime="2015-02-25T03:16:22.000Z" itemprop="datePublished">Feb 25 2015</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+    <a class="article-category-link" href="/categories/git/">git</a>
   </div>
 
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/25/manage-multi-remote-repo-for-git/">git管理多个远程仓库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天试用了一下BAE，结果在创建完应用的时候居然自己给我分配了一个新的BAE的git repo地址，我人当时就傻眼了，我已经有github和git@OSC了，难道现在还要再多一个百度的git仓库,整个人当时就不好了。还好伟大的git有各种玩法。</p>
+<p>首先在原有的git项目上添加百度的git地址,注意其中bae是新的remote branch的别名。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote <span class="built_in">add</span> bae http<span class="variable">s:</span>//git.duapp.<span class="keyword">com</span>/appidxxxxxxx</div><div class="line">git remote -<span class="keyword">v</span></div></pre></td></tr></table></figure>
+
+<p>添加完百度的远程仓库以后第一步是要pull他，否则你无法提交仓库代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">git</span> pull bae</div></pre></td></tr></table></figure>
+
+<p>执行到这里如果你是nodejs项目的话package.json一定会冲突，处理完冲突以后按照常规方法执行提交合并</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">add</span> .</div><div class="line">git commit -<span class="keyword">am</span> <span class="string">"your comment"</span></div></pre></td></tr></table></figure>
+
+<p>好了执行到这里我们对本地仓库的改动就全部完成了下面是推送，这里我们需要推送2次</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">push</span> origin master </div><div class="line">git <span class="keyword">push</span> bae master</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-howto-create-project-template-though-grunt-init" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/10/howto-create-project-template-though-grunt-init/" class="article-date">
+  	<time datetime="2015-02-10T02:55:21.000Z" itemprop="datePublished">Feb 10 2015</time>
+</a>
+      
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
 
@@ -216,7 +273,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/10/create-web-project-though-grunt-init-template/">通过grunt-init模板来创建web项目</a>
+      <a class="article-title" href="/2015/02/10/howto-create-project-template-though-grunt-init/">通过grunt-init模板来创建web项目</a>
     </h1>
   
 
@@ -227,10 +284,15 @@
         <p>做了多年的web开发，自己也经常有各种各样的想法希望快速实现一下，这个时候第一遇到的问题就是搭建环境，虽然现在有很多HTML5的现成的模板可以使用，但毕竟自由也有很多年的积累，自己的东西用起来总是顺手许多，所以才有了使用grunt-init来搭建自己的模板的想法。</p>
 <h2 id="关于Grunt">关于Grunt</h2>
 <p>首先现代的软件开发依赖越来越大，分工越来越细，这样也导致了项目工程中需要引入越来越多的第三方依赖，若干年前作为web项目我们还可以自己应付，但是随着web的发展项目构建也成为了web项目不得不面对的问题。在别的语言中，java有maven，python有pip，ruby有gem，那么作为前端的主力nodejs怎么自然而然的也就出现的Grunt 它就是nodejs世界的项目构建工具。</p>
+<h2 id="准备">准备</h2>
+<p>首先我们必须要有nodejs环境，至于怎么装nodejs环境这里就不多说了，网上的一堆一堆的文章。</p>
+<h3 id="安装grunt_和grunt-init">安装grunt 和grunt-init</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g grunt</div><div class="line"><span class="variable">$ </span>npm install -g grunt-cli</div><div class="line"><span class="variable">$ </span>npm install -g grunt-init</div></pre></td></tr></table></figure>
+
 
         
           <p class="article-more-link">
-            <a href="/2015/02/10/create-web-project-though-grunt-init-template/#more">more >></a>
+            <a href="/2015/02/10/howto-create-project-template-though-grunt-init/#more">more >></a>
           </p>
         
       
